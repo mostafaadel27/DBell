@@ -5,11 +5,13 @@ import Image from "next/image"
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
+const basePath = process.env.__NEXT_ROUTER_BASEPATH || ""
+
 const transformations = [
   {
     name: "Marcus T.",
-    before: "/images/transform_before_male.png",
-    after: "/images/transform_after_male.png",
+    before: `${basePath}/images/transform_before_male.png`,
+    after: `${basePath}/images/transform_after_male.png`,
     story: "Lost 30 lbs and built lean muscle over 6 months of dedicated training.",
     duration: "6 Months"
   }

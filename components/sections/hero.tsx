@@ -12,7 +12,7 @@ export function Hero() {
         {/* Placeholder background image - Next Image is ideally better here but CSS background allows easy overlays */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url("/images/hero_bg.png")' }}
+          style={{ backgroundImage: `url("${process.env.__NEXT_ROUTER_BASEPATH || ""}/images/hero_bg.png")` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50" />

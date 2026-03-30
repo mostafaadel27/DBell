@@ -4,18 +4,20 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Quote } from "lucide-react"
 
+const basePath = process.env.__NEXT_ROUTER_BASEPATH || ""
+
 const testimonials = [
   {
     name: "Marcus T.",
-    role: "Member for 2 years",
-    image: "/images/testimonial_1.png",
-    text: "The equipment is top tier and the environment pushes you to be your absolute best. I've broken all my PRs since joining DBell."
+    role: "Lost 35 lbs",
+    image: `${basePath}/images/testimonial_1.png`,
+    text: "DBell completely changed my life. The trainers pushed me beyond what I thought was possible. I've never felt stronger or more confident."
   },
   {
     name: "Sarah L.",
-    role: "Member for 10 months",
-    image: "/images/testimonial_2.png",
-    text: "The personal trainers are incredibly knowledgeable. They helped me fix my form and build a routine that actually works with my schedule."
+    role: "Marathon Runner",
+    image: `${basePath}/images/testimonial_2.png`,
+    text: "The community at DBell is unmatched. From day one, everyone welcomed me and helped me reach goals I never thought achievable."
   }
 ]
 
