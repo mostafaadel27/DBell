@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
 import { Quote } from "lucide-react"
 
 const basePath = process.env.__NEXT_ROUTER_BASEPATH || ""
@@ -32,21 +31,22 @@ export function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto items-start">
           {testimonials.map((t, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: -50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.2, duration: 0.5 }}
-              className="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl relative"
+              transition={{ ease: [0.16, 1, 0.3, 1], delay: idx * 0.15, duration: 0.8 }}
+              className={`bg-black border border-neutral-800 p-10 relative flex-1 ${idx === 1 ? 'md:mt-16' : ''}`}
             >
-              <Quote className="absolute top-8 right-8 w-12 h-12 text-neutral-800" />
+              <Quote aria-hidden="true" className="absolute top-8 right-8 w-12 h-12 text-neutral-800/50" />
               
-              <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-red-600">
-                  <Image src={t.image} alt={t.name} fill className="object-cover" />
+              <div className="flex items-center gap-4 mb-8">
+                <div className="relative w-16 h-16 border-2 border-red-600 overflow-hidden shrink-0">
+                  <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-white leading-tight uppercase">{t.name}</h4>

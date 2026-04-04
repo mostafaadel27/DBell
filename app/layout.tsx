@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Oswald, Manrope } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Toaster } from "sonner"
 
-const inter = Inter({ subsets: ["latin"] })
+const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" })
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" })
 
 export const metadata: Metadata = {
   title: "DBell | Premium Fitness & Gym",
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.className} bg-black text-white antialiased`}>
+      <body className={`${manrope.className} ${oswald.variable} ${manrope.variable} bg-black text-white antialiased`}>
         <Navbar />
         {children}
         <Footer />

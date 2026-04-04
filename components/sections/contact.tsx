@@ -41,10 +41,10 @@ export function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-black uppercase text-white mb-6">Start Your Journey</h2>
             <p className="text-neutral-400 mb-8 max-w-md">
@@ -54,7 +54,7 @@ export function Contact() {
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="bg-neutral-900 border border-neutral-800 w-12 h-12 rounded-full flex items-center justify-center shrink-0">
-                  <MapPin className="text-red-500 w-5 h-5" />
+                  <MapPin aria-hidden="true" className="text-red-500 w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-white font-bold uppercase text-sm">Location</h4>
@@ -63,7 +63,7 @@ export function Contact() {
               </div>
               <div className="flex items-center gap-4">
                 <div className="bg-neutral-900 border border-neutral-800 w-12 h-12 rounded-full flex items-center justify-center shrink-0">
-                  <Phone className="text-red-500 w-5 h-5" />
+                  <Phone aria-hidden="true" className="text-red-500 w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-white font-bold uppercase text-sm">Phone</h4>
@@ -72,7 +72,7 @@ export function Contact() {
               </div>
               <div className="flex items-center gap-4">
                 <div className="bg-neutral-900 border border-neutral-800 w-12 h-12 rounded-full flex items-center justify-center shrink-0">
-                  <Mail className="text-red-500 w-5 h-5" />
+                  <Mail aria-hidden="true" className="text-red-500 w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-white font-bold uppercase text-sm">Email</h4>
@@ -83,32 +83,32 @@ export function Contact() {
           </motion.div>
           
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-black border border-neutral-800 p-8 rounded-2xl relative"
+            transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.8, delay: 0.15 }}
+            className="bg-black border-2 border-neutral-800 p-10 relative"
           >
-            <div className="absolute top-0 right-8 -translate-y-1/2 bg-red-600 px-4 py-1 rounded shadow-[0_0_15px_rgba(220,38,38,0.5)] flex items-center gap-2 text-white font-bold text-sm uppercase">
+            <div className="absolute top-0 right-8 -translate-y-1/2 bg-red-600 border border-neutral-800 px-6 py-2 flex items-center gap-2 text-black font-black text-sm uppercase tracking-widest">
               <Dumbbell className="w-4 h-4" /> Try Us Free
             </div>
             
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-4">
               <div>
                 <label className="text-neutral-300 font-medium text-sm mb-2 block uppercase">Full Name</label>
-                <Input {...register("name")} placeholder="John Doe" />
+                <Input {...register("name")} placeholder="John Doe" aria-invalid={!!errors.name} />
                 {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
               </div>
 
               <div>
                 <label className="text-neutral-300 font-medium text-sm mb-2 block uppercase">Phone Number</label>
-                <Input {...register("phone")} placeholder="(555) 000-0000" />
+                <Input {...register("phone")} placeholder="(555) 000-0000" aria-invalid={!!errors.phone} />
                 {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
               </div>
 
               <div>
                 <label className="text-neutral-300 font-medium text-sm mb-2 block uppercase">Primary Fitness Goal</label>
-                <Input {...register("goal")} placeholder="e.g. Build muscle, lose weight" />
+                <Input {...register("goal")} placeholder="e.g. Build muscle, lose weight" aria-invalid={!!errors.goal} />
                 {errors.goal && <p className="text-red-500 text-sm mt-1">{errors.goal.message}</p>}
               </div>
 

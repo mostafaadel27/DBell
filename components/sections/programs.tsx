@@ -7,17 +7,17 @@ const programs = [
   {
     title: "Weight Loss",
     description: "High-intensity cardio and functional training designed to burn fat and improve cardiovascular health.",
-    icon: <HeartPulse className="w-12 h-12 text-red-600 mb-4" strokeWidth={1.5} />,
+    icon: <HeartPulse aria-hidden="true" className="w-12 h-12 text-red-600 mb-4" strokeWidth={1.5} />,
   },
   {
     title: "Muscle Gain",
     description: "Progressive overload weightlifting programs focused on hypertrophy and strength building.",
-    icon: <Dumbbell className="w-12 h-12 text-red-600 mb-4" strokeWidth={1.5} />,
+    icon: <Dumbbell aria-hidden="true" className="w-12 h-12 text-red-600 mb-4" strokeWidth={1.5} />,
   },
   {
     title: "Personal Training",
     description: "1-on-1 expert guidance tailored to your specific fitness goals, nutrition, and lifestyle.",
-    icon: <Activity className="w-12 h-12 text-red-600 mb-4" strokeWidth={1.5} />,
+    icon: <Activity aria-hidden="true" className="w-12 h-12 text-red-600 mb-4" strokeWidth={1.5} />,
   },
 ]
 
@@ -32,11 +32,11 @@ const containerVariants: Variants = {
 }
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: -40 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 15 }
+    transition: { ease: [0.16, 1, 0.3, 1], duration: 0.8 }
   },
 }
 
@@ -52,24 +52,27 @@ export function Programs() {
         </div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
           {programs.map((program, index) => (
-            <motion.div 
+            <motion.button 
               key={index}
               variants={itemVariants}
-              className="bg-neutral-900 border border-neutral-800 p-8 rounded-xl hover:border-red-600/50 hover:bg-neutral-900/80 transition-colors group cursor-pointer"
+              whileHover={{ y: -10 }}
+              className="text-left bg-black border border-neutral-800 p-10 hover:border-red-600 hover:bg-neutral-950 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 flex flex-col items-start justify-start"
             >
-              <div className="transform group-hover:scale-110 group-hover:-translate-y-2 transition-transform duration-300">
+              <div className="transform group-hover:scale-110 group-hover:-translate-y-2 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] mb-8">
                 {program.icon}
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3 uppercase tracking-tight">{program.title}</h3>
-              <p className="text-neutral-400">{program.description}</p>
-            </motion.div>
+              <div>
+                <h3 className="text-2xl font-bold font-display text-white mb-3 uppercase tracking-tight">{program.title}</h3>
+                <p className="text-neutral-400 leading-relaxed">{program.description}</p>
+              </div>
+            </motion.button>
           ))}
         </motion.div>
       </div>

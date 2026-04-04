@@ -54,42 +54,43 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:gap-8 gap-12 max-w-6xl mx-auto items-center">
           {plans.map((plan, index) => (
             <motion.div 
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: -50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -12 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.6 }}
-              className={`relative flex flex-col p-8 rounded-2xl bg-black border ${plan.highlighted ? 'border-red-600 shadow-[0_0_30px_rgba(220,38,38,0.15)] ring-1 ring-red-600' : 'border-neutral-800'}`}
+              transition={{ ease: [0.16, 1, 0.3, 1], delay: index * 0.15, duration: 0.8 }}
+              className={`relative flex flex-col p-10 transition-transform ${plan.highlighted ? 'bg-red-600 border-2 border-red-600 md:scale-110 z-10' : 'bg-black border border-neutral-800'}`}
             >
               {plan.highlighted && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black text-white text-xs font-bold uppercase tracking-widest py-2 px-6 border border-neutral-800">
                   Most Popular
                 </div>
               )}
               
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white uppercase mb-2">{plan.name}</h3>
-                <p className="text-neutral-400 min-h-[48px]">{plan.description}</p>
+              <div className="mb-8 mt-2">
+                <h3 className={`text-2xl font-bold font-display uppercase mb-2 ${plan.highlighted ? 'text-black' : 'text-white'}`}>{plan.name}</h3>
+                <p className={`min-h-[48px] ${plan.highlighted ? 'text-black/80 font-medium' : 'text-neutral-400'}`}>{plan.description}</p>
               </div>
               
               <div className="mb-8 flex items-end gap-2">
-                <span className="text-5xl font-black text-white">${plan.price}</span>
-                <span className="text-neutral-400 pb-1">/ month</span>
+                <span className={`text-6xl font-display font-black tracking-tighter tabular-nums ${plan.highlighted ? 'text-black' : 'text-white'}`}>${plan.price}</span>
+                <span className={`pb-2 uppercase tracking-widest text-xs font-bold font-display ${plan.highlighted ? 'text-black/70' : 'text-neutral-400'}`}>/ month</span>
               </div>
               
-              <ul className="space-y-4 mb-8 flex-1">
+              <ul className="space-y-5 mb-8 flex-1">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                    <span className="text-neutral-300">{feature}</span>
+                    <Check aria-hidden="true" className={`w-5 h-5 shrink-0 mt-0.5 ${plan.highlighted ? 'text-black' : 'text-red-500'}`} strokeWidth={3} />
+                    <span className={plan.highlighted ? 'text-black font-semibold' : 'text-neutral-300'}>{feature}</span>
                   </li>
                 ))}
               </ul>
               
-              <Button size="lg" className="w-full" variant={plan.highlighted ? "default" : "outline"}>
+              <Button size="lg" className={plan.highlighted ? "w-full bg-black text-white hover:bg-neutral-900 font-bold" : "w-full"} variant={plan.highlighted ? "default" : "outline"}>
                 Choose {plan.name}
               </Button>
             </motion.div>

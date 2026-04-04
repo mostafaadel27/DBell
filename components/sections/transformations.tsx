@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -40,24 +39,24 @@ export function Transformations() {
             <motion.div 
               key={idx}
               className={`flex flex-col md:flex-row gap-8 items-center ${idx === currentIndex ? 'block' : 'hidden'}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: -40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.8 }}
             >
               <div className="grid grid-cols-2 gap-4 flex-1">
-                <div className="relative group overflow-hidden rounded-xl aspect-[3/4]">
-                  <Image src={item.before} alt="Before" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute top-4 left-4 bg-black/80 backdrop-blur text-white text-xs font-bold uppercase py-1 px-3 rounded">Before</div>
+                <div className="relative group overflow-hidden border border-neutral-800 aspect-[3/4]">
+                  <img src={item.before} alt="Before" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute top-4 left-4 bg-black/90 text-white text-xs font-bold uppercase py-1 px-3 border border-neutral-800 tracking-widest">Before</div>
                 </div>
-                <div className="relative group overflow-hidden rounded-xl aspect-[3/4]">
-                  <Image src={item.after} alt="After" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold uppercase py-1 px-3 rounded shadow-[0_0_10px_rgba(220,38,38,0.5)]">After</div>
+                <div className="relative group overflow-hidden border-2 border-red-600 aspect-[3/4]">
+                  <img src={item.after} alt="After" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute top-4 right-4 bg-red-600 text-black text-xs font-black uppercase py-1 px-3 tracking-widest">After</div>
                 </div>
               </div>
               
               <div className="flex-1 space-y-6 md:pl-12">
-                <div className="inline-block bg-neutral-900 border border-neutral-800 rounded-full px-4 py-1.5 text-sm font-medium text-red-500 mb-2">
+                <div className="inline-block bg-black border border-neutral-800 px-4 py-1.5 text-sm font-bold uppercase tracking-widest text-red-600 mb-2">
                   {item.duration} Journey
                 </div>
                 <h3 className="text-4xl font-bold text-white uppercase">{item.name}</h3>

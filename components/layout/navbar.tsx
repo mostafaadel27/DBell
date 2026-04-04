@@ -27,7 +27,7 @@ export function Navbar() {
       className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
+      transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.8 }}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
@@ -35,7 +35,7 @@ export function Navbar() {
         </Link>
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className="text-sm font-medium text-neutral-300 hover:text-white transition-colors">
+            <Link key={link.name} href={link.href} className="text-xs uppercase tracking-widest font-display font-bold text-neutral-400 hover:text-white transition-colors">
               {link.name}
             </Link>
           ))}
@@ -55,7 +55,7 @@ export function Navbar() {
             <Link 
               key={link.name} 
               href={link.href} 
-              className="text-base font-medium text-neutral-300 hover:text-white p-2"
+              className="text-lg uppercase tracking-widest font-display font-bold text-neutral-400 hover:text-white p-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
