@@ -39,3 +39,29 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI Related Files
+.agents
+_agents
+.agent
+_agent
+.claude
+.codex
+.cursor
+.gemini
+.kiro
+.opencode
+.pi
+.rovodev
+.trae
+.trae-cn
+.impeccable.md
+.ai
+.builder
+.bolt
+.v0
+.lovable
+.idx
+.git-coauthor-config
+.devin
+.github/copilot
